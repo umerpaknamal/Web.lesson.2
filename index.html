@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Expene App</title>
+    <link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous"
+		/>
+		<script
+			defer
+			src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"
+			integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP"
+			crossorigin="anonymous"
+		></script>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <span class="navbar-brand mb-0 h1">Personal Expense App</span>
+    </nav>
+
+    <div class="container-fluid bg-light" style="min-height: 100vh">
+        <div class="container">
+
+            <div class="jumbotron mt-4">
+                <div class="input-group mb-3">
+                    <input
+                        type="text"
+                        id="inputamount"
+                        class="form-control"
+                        placeholder="Amount spent"
+                        aria-label="Amount spent"
+                        aria-describedby="spent in rupee"
+                    />
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="spent in rupee">Rs</span>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="spent at">@</span>
+                    </div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="spent On"
+                        id="inputdesc"
+                        aria-label="spent On"
+                        aria-describedby="spent at"
+                    />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="button" id="expensecounter">Add</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+            
+
+            
+            <div id="expensetable"></div>
+        </div>
+    </div>
+
+    <script>
+        // Take a number First 
+        let totalexpense =0;
+        const headingele=document.querySelector("#heading");
+         
+        const inputtext=document.querySelector("#inputdesc");
+
+        const inputelement = document.querySelector("#inputamount");
+
+        const expensetableel=document.querySelector("#expensetable")
+
+        //array
+        const allexpenses=[];
+
+
+
+
+
+        // listen to click event 
+        function expenseincrement()
+        {
+            const expenseitem={};
+
+
+            //get the input box element 
+            
+            const textDesc=inputtext.value;
+
+            // get the value from the input box
+            const textamout=inputelement.value;
+
+
+           expenseitem.desc=textDesc;
+
+           expenseitem.amount=textamout;
+   
+           allexpenses.push(expenseitem)
+
+
+            //get the input amount from the input box  
+            const expense=parseInt(textamout,10);
+          
+            // add amount to the total expense
+          
+            totalexpense=totalexpense + expense;
+            // show output
+        
+
+            const allexpensehtml=allexpenses.map(expense=>{
+                return `<div>${expense.amount}:::${expense.desc} </div>`
+            }) 
+
+            joinedexpensehtml=allexpensehtml.join("");
+
+           // const sometext=`Expense :: ${totalexpense}`;
+
+            expensetableel.innerHTML=joinedexpensehtml;
+           
+            //headingele.textContent=sometext;
+
+         }
+        
+// get the expensecounter buuton element 
+       const element = document.querySelector("#expensecounter");
+// Track the click event
+       element.addEventListener("click",expenseincrement,false)
+
+
+ </script>
+</body>
+</html>
