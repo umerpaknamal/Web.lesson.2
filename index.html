@@ -57,13 +57,11 @@
                     </div>
                 </div>
             </div>
-
-
-
             
-
-            
-            <div id="expensetable"></div>
+            <div id="expensetable">
+                <ul class="list-group">
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -116,7 +114,20 @@
         
 
             const allexpensehtml=allexpenses.map(expense=>{
-                return `<div>${expense.amount}:::${expense.desc} </div>`
+                return `<div><li class="list-group-item d-flex justify-content-between">
+							<div class="d-flex flex-column">
+								${textDesc}
+								<small class="text-muted">March 11, 2019</small>
+							</div>
+							<div>
+								<span class="px-5">
+									${textamout}
+								</span>
+								<button type="button" class="btn btn-outline-danger btn-sm">
+									<i class="fas fa-trash-alt"></i>
+								</button>
+							</div>
+						</li> </div>`
             }) 
 
             joinedexpensehtml=allexpensehtml.join("");
