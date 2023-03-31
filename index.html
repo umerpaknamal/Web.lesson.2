@@ -21,11 +21,12 @@
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <span class="navbar-brand mb-0 h1">Personal Expense App</span>
+        <span class="navbar-brand mb-0 h1" id="heading"></span>
+
     </nav>
 
     <div class="container-fluid bg-light" style="min-height: 100vh">
         <div class="container">
-
             <div class="jumbotron mt-4">
                 <div class="input-group mb-3">
                     <input
@@ -98,6 +99,7 @@
 
 
            expenseitem.desc=textDesc;
+           expenseitem.moment=new Date();
 
            expenseitem.amount=textamout;
    
@@ -117,7 +119,7 @@
                 return `<div><li class="list-group-item d-flex justify-content-between">
 							<div class="d-flex flex-column">
 								${textDesc}
-								<small class="text-muted">March 11, 2019</small>
+								<small class="text-muted"> ${expenseitem.moment.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}</small>
 							</div>
 							<div>
 								<span class="px-5">
@@ -132,11 +134,11 @@
 
             joinedexpensehtml=allexpensehtml.join("");
 
-           // const sometext=`Expense :: ${totalexpense}`;
+            const sometext=`Total = ${totalexpense} Rs`;
 
             expensetableel.innerHTML=joinedexpensehtml;
            
-            //headingele.textContent=sometext;
+            headingele.textContent=sometext;
 
          }
         
