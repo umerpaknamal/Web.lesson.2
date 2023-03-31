@@ -1,0 +1,13 @@
+Staring with adding html basic structure link font and icons 
+Staring with basic body structure navbar and how to assign id and class to any element in boostrap
+Use of document.querySelector() with how to add id from the element 
+how to define array annd object in javascript 
+how to create the function and how to use it in javascript
+how to push element in an array e.g pushing objects in an array 
+How to loop through array using the .map funtion and how to join the stringd and us of innerhtml
+Then Templating the amount and item desc with time of adding the item to the array
+How to track th click click event e.g  element.addEventListener("click",expenseincrement,false)
+How to differenetaiate the view and control functions of the app
+How to render the elemets e.g (const allexpensehtml=newarr.map(expense => createitem(expense))
+joinedexpensehtml=allexpensehtml.join("");
+expensetableel.innerHTML=joinedexpensehtml;)
