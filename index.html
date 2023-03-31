@@ -115,33 +115,53 @@
             // show output
         
 
-            const allexpensehtml=allexpenses.map(expense=>{
-                return `<div><li class="list-group-item d-flex justify-content-between">
-							<div class="d-flex flex-column">
-								${textDesc}
-								<small class="text-muted"> ${expenseitem.moment.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}</small>
-							</div>
-							<div>
-								<span class="px-5">
-									${textamout}
-								</span>
-								<button type="button" class="btn btn-outline-danger btn-sm">
-									<i class="fas fa-trash-alt"></i>
-								</button>
-							</div>
-						</li> </div>`
-            }) 
-
-            joinedexpensehtml=allexpensehtml.join("");
+            const allexpensehtml=allexpenses.map(expense => createitem(expense)) 
 
             const sometext=`Total = ${totalexpense} Rs`;
-
+            joinedexpensehtml=allexpensehtml.join("");
             expensetableel.innerHTML=joinedexpensehtml;
            
             headingele.textContent=sometext;
 
          }
         
+
+function deleteitem(datevalue){ 
+ const newarr=[]; 
+
+for(let i=0; i<allexpenses.length; i++){
+    if(allexpenses[i].moment.valueOf()!==datevalue){
+       newarr.push(allexpenses[i]);
+    }
+}
+const allexpensehtml=newarr.map(expense => createitem(expense))
+joinedexpensehtml=allexpensehtml.join("");
+expensetableel.innerHTML=joinedexpensehtml;
+console.log(newarr)
+}
+
+
+         function  createitem({desc,amount,moment}){
+            return `<div><li class="list-group-item d-flex justify-content-between">
+							<div class="d-flex flex-column">
+								${desc}
+								<small class="text-muted"> ${moment.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}</small>
+							</div>
+							<div>
+								<span class="px-5">
+									${amount}
+								</span>
+								<button 
+                                type="button" 
+                                class="btn btn-outline-danger btn-sm"
+                                onclick="deleteitem(${moment.valueOf()})"
+                                >
+									<i class="fas fa-trash-alt"></i>
+								</button>
+							</div>
+						</li> </div>`
+         }
+
 // get the expensecounter buuton element 
        const element = document.querySelector("#expensecounter");
 // Track the click event
